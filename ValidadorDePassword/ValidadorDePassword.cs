@@ -45,6 +45,18 @@ namespace ValidadorDePassword
             return false;
         }
 
+        public bool ValidarDebeContenerAlgunaMinuscula(string password)
+        {
+            foreach (var c in password) 
+            {
+                if (char.IsLower(c))
+                { 
+                    return true; 
+                }
+            }
+            return false;
+        }
+
     }
 
 

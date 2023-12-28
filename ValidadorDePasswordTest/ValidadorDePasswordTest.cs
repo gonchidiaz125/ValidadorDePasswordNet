@@ -33,7 +33,7 @@ namespace ValidadorDePasswordTest
         }
         [TestMethod]
         public void ValidarLargoMaximo_DebeRetornarTrue()
-        {  
+        {
             var password = "01234567890123456789";
             var validador = new ValidadorDePassword.ValidadorDePassword();
             var result = validador.ValidarLargoMaximo(password);
@@ -62,6 +62,23 @@ namespace ValidadorDePasswordTest
             var password = "abcd";
             var validador = new ValidadorDePassword.ValidadorDePassword();
             var result = validador.ValidarDebeContenerAlgunNumero(password);
+            Assert.IsFalse(result);
+        }
+        [TestMethod]
+        public void ValidarDebeContenerAlgunaMinuscula_DebeRetornarTrue()
+        {
+            var password = "aBCD";
+            var validador = new ValidadorDePassword.ValidadorDePassword();
+            var result = validador.ValidarDebeContenerAlgunaMinuscula(password);
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void ValidarDebeContenerAlgunaMinuscula_DebeRetornarFalse()
+        {
+            var password = "ABCD";
+            var validador = new ValidadorDePassword.ValidadorDePassword();
+            var result = validador.ValidarDebeContenerAlgunaMinuscula(password);
             Assert.IsFalse(result);
         }
     }

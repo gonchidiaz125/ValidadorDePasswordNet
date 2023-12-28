@@ -38,3 +38,15 @@ resultado = validador.ValidarDebeContenerAlgunNumero(password);
 Console.WriteLine($"Validar que contenga un numero <{password}>: {resultado}");
 
 Console.WriteLine();
+
+password = "aBCD";
+resultado = validador.ValidarDebeContenerAlgunaMinuscula(password);
+Console.WriteLine($"Validar que contenga alguna minuscula <{password}>: {resultado}");
+
+Console.WriteLine();
+
+password = "ABCD";
+resultado = validador.ValidarDebeContenerAlgunaMinuscula(password);
+Console.WriteLine($"Validar que contenga alguna minuscula <{password}>: {resultado}");
+
+Console.WriteLine();
