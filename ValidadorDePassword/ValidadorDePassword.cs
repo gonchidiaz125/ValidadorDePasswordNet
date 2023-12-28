@@ -19,5 +19,21 @@ namespace ValidadorDePassword
                 return false;
             }
         }
+        
+        public bool ValidarLargoMaximo(string password)
+        {
+            var largoMaximo = 20;
+            if (password.Length <= largoMaximo)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
+
+
 }

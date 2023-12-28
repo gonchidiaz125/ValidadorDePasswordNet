@@ -15,3 +15,14 @@ Console.WriteLine($"Validar largo minimo de <{password}>: {resultado}");
 
 Console.WriteLine();
 
+password = "validar largo maximo";
+resultado = validador.ValidarLargoMaximo(password);
+Console.WriteLine($"Validar largo maximo de <{password}>: {resultado}");
+
+Console.WriteLine();
+
+password = "validar largo maximo!! validar largo maximo!!";
+resultado = validador.ValidarLargoMaximo(password);
+Console.WriteLine($"Validar largo maximo de <{password}>: {resultado}");
+
+Console.WriteLine();

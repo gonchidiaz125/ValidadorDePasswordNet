@@ -31,7 +31,22 @@ namespace ValidadorDePasswordTest
             Assert.IsFalse(result);
 
         }
-
+        [TestMethod]
+        public void ValidarLargoMaximo_DebeRetornarTrue()
+        {  
+            var password = "01234567890123456789";
+            var validador = new ValidadorDePassword.ValidadorDePassword();
+            var result = validador.ValidarLargoMaximo(password);
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void ValidarLargoMaximo_DebeRetornarFalse()
+        {
+            var password = "01234567890123456789000";
+            var validador = new ValidadorDePassword.ValidadorDePassword();
+            var result = validador.ValidarLargoMaximo(password);
+            Assert.IsFalse(result);
+        }
 
     }
 }
