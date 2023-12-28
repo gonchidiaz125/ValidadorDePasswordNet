@@ -98,5 +98,23 @@ namespace ValidadorDePasswordTest
             var result = validador.ValidarDebeContenerAlgunaMayuscula(password);
             Assert.IsFalse(result);
         }
+
+        [TestMethod]
+        public void ValidarDebeContenerAlgunCaracterEspecial_DebeRetornarTrue()
+        {
+            var password = "abc!!";
+            var validador = new ValidadorDePassword.ValidadorDePassword();
+            var result = validador.ValidarDebeContenerAlgunCaracterEspecial(password);
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void ValidarDebeContenerAlgunCaracterEspecial_DebeRetornarFalse()
+        {
+            var password = "abcd";
+            var validador = new ValidadorDePassword.ValidadorDePassword();
+            var result = validador.ValidarDebeContenerAlgunCaracterEspecial(password);
+            Assert.IsFalse(result);
+        }
     }
 }

@@ -68,6 +68,19 @@ namespace ValidadorDePassword
             return false;
         }
 
+        public bool ValidarDebeContenerAlgunCaracterEspecial(string password)
+        {
+            foreach (var c in password) 
+            {
+                if (char.IsLetterOrDigit(c) == false)
+                { 
+                    return true; 
+                }
+            }
+            return false;
+        }
+
+
     }
 
 

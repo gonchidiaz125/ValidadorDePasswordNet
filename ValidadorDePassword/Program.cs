@@ -62,3 +62,15 @@ resultado = validador.ValidarDebeContenerAlgunaMayuscula(password);
 Console.WriteLine($"Validar que contenga alguna mayuscula <{password}>: {resultado}");
 
 Console.WriteLine();
+
+password = "abd!!";
+resultado = validador.ValidarDebeContenerAlgunCaracterEspecial(password);
+Console.WriteLine($"Validar que contenga algun caracter especial <{password}>: {resultado}");
+
+Console.WriteLine();
+
+password = "abcd";
+resultado = validador.ValidarDebeContenerAlgunCaracterEspecial(password);
+Console.WriteLine($"Validar que contenga algun caracter especial <{password}>: {resultado}");
+
+Console.WriteLine();
