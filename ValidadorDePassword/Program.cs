@@ -26,3 +26,15 @@ resultado = validador.ValidarLargoMaximo(password);
 Console.WriteLine($"Validar largo maximo de <{password}>: {resultado}");
 
 Console.WriteLine();
+
+password = "1234";
+resultado = validador.ValidarDebeContenerAlgunNumero(password);
+Console.WriteLine($"Validar que contenga un numero <{password}>: {resultado}");
+
+Console.WriteLine();
+
+password = "abcd";
+resultado = validador.ValidarDebeContenerAlgunNumero(password);
+Console.WriteLine($"Validar que contenga un numero <{password}>: {resultado}");
+
+Console.WriteLine();

@@ -48,5 +48,21 @@ namespace ValidadorDePasswordTest
             Assert.IsFalse(result);
         }
 
+        [TestMethod]
+        public void ValidarDebeContenerAlgunNumero_DebeRetornarTrue()
+        {
+            var password = "1234";
+            var validador = new ValidadorDePassword.ValidadorDePassword();
+            var result = validador.ValidarDebeContenerAlgunNumero(password);
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void ValidarDebeContenerAlgunNumero_DebeRetornarFalse()
+        {
+            var password = "abcd";
+            var validador = new ValidadorDePassword.ValidadorDePassword();
+            var result = validador.ValidarDebeContenerAlgunNumero(password);
+            Assert.IsFalse(result);
+        }
     }
 }

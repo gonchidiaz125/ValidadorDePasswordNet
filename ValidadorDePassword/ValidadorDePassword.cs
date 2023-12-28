@@ -32,6 +32,18 @@ namespace ValidadorDePassword
                 return false;
             }
         }
+        
+        public bool ValidarDebeContenerAlgunNumero(string password) 
+        {
+            foreach (var c in password) 
+            {
+                if (char.IsDigit(c))
+                {
+                    return true; 
+                }
+            }
+            return false;
+        }
 
     }
 
