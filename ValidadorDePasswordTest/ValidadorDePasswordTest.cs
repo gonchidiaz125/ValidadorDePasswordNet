@@ -9,10 +9,12 @@ namespace ValidadorDePasswordTest
     [TestClass]
     public class ValidadorDePasswordTest
     {
+
+
         [TestMethod]
         public void ValidarLargoMinimo_DebeRetornarTrue()
         {
-            var password = "123";
+            var password = "12345";
             var validador = new ValidadorDePassword.ValidadorDePassword();
 
             var result = validador.ValidarLargoMinimo(password);
@@ -116,5 +118,175 @@ namespace ValidadorDePasswordTest
             var result = validador.ValidarDebeContenerAlgunCaracterEspecial(password);
             Assert.IsFalse(result);
         }
+
+        [TestMethod]
+        public void ValidarPasswordConTodasSusReglas_DebeRetornarTrue()
+        {
+            var password = "ABCdef1.";
+            var validador = new ValidadorDePassword.ValidadorDePassword();
+            var result = validador.ValidarPasswordConTodasSusReglas(password);
+            Assert.IsTrue(result.Valida);
+
+            // Verificar que cada regla también sea valida
+
+            foreach (var regla in result.Reglas)
+            {
+                Assert.IsTrue(regla.Valida);
+            }
+        }
+
+        [TestMethod]
+        public void ValidarPasswordConTodasSusReglas_DebeRetornarFalsoPorLargoMinimo()
+        {
+            //var password = "aB1.";
+            var password = "aB1.";
+            var validador = new ValidadorDePassword.ValidadorDePassword();
+            var result = validador.ValidarPasswordConTodasSusReglas(password);
+            Assert.IsFalse(result.Valida);
+
+            // Verificar que cada regla también sea valida
+
+            foreach (var regla in result.Reglas)
+            {
+                if  (regla.Regla == "El largo de la contraseña debe ser al menos de 5 caracteres")
+                {
+                    Assert.IsFalse(regla.Valida);
+                } 
+                else
+                {
+                    Assert.IsTrue(regla.Valida);
+                }
+                
+            }
+        }
+
+        [TestMethod]
+        public void ValidarPasswordConTodasSusReglas_DebeRetornarFalsoPorLargoMaximo()
+        {
+            
+            var password = "aB1.01236547890123456";
+            var validador = new ValidadorDePassword.ValidadorDePassword();
+            var result = validador.ValidarPasswordConTodasSusReglas(password);
+            Assert.IsFalse(result.Valida);
+
+            // Verificar que cada regla también sea valida
+
+            foreach (var regla in result.Reglas)
+            {
+                if (regla.Regla == "El largo de la contraseña debe contener menos de 20 caracteres")
+                {
+                    Assert.IsFalse(regla.Valida);
+                }
+                else
+                {
+                    Assert.IsTrue(regla.Valida);
+                }
+
+            }
+        }
+
+        [TestMethod]
+        public void ValidarPasswordConTodasSusReglas_DebeRetornarFalsoPorFaltaDeCaracterNumerico()
+        {
+
+            var password = "aB!bbbbb";
+            var validador = new ValidadorDePassword.ValidadorDePassword();
+            var result = validador.ValidarPasswordConTodasSusReglas(password);
+            Assert.IsFalse(result.Valida);
+
+            // Verificar que cada regla también sea valida
+
+            foreach (var regla in result.Reglas)
+            {
+                if (regla.Regla == "La contraseña debe contener al menos un caracter numerico")
+                {
+                    Assert.IsFalse(regla.Valida);
+                }
+                else
+                {
+                    Assert.IsTrue(regla.Valida);
+                }
+
+            }
+        }
+        [TestMethod]
+        public void ValidarPasswordConTodasSusReglas_DebeRetornarFalsoPorFaltaDeLetraMinuscula()
+        {
+
+            var password = "AAABB!!111";
+            var validador = new ValidadorDePassword.ValidadorDePassword();
+            var result = validador.ValidarPasswordConTodasSusReglas(password);
+            Assert.IsFalse(result.Valida);
+
+            // Verificar que cada regla también sea valida
+
+            foreach (var regla in result.Reglas)
+            {
+                if (regla.Regla == "La contraseña debe contener al menos un caracter letra en minuscula")
+                {
+                    Assert.IsFalse(regla.Valida);
+                }
+                else
+                {
+                    Assert.IsTrue(regla.Valida);
+                }
+
+            }
+        }
+
+        [TestMethod]
+        public void ValidarPasswordConTodasSusReglas_DebeRetornarFalsoPorFaltaDeLetraMayuscula()
+        {
+
+            var password = "aaaaaabbb!!111";
+            var validador = new ValidadorDePassword.ValidadorDePassword();
+            var result = validador.ValidarPasswordConTodasSusReglas(password);
+            Assert.IsFalse(result.Valida);
+
+            // Verificar que cada regla también sea valida
+
+            foreach (var regla in result.Reglas)
+            {
+                if (regla.Regla == "La contraseña debe contener al menos un caracter letra en mayuscula")
+                {
+                    Assert.IsFalse(regla.Valida);
+                }
+                else
+                {
+                    Assert.IsTrue(regla.Valida);
+                }
+
+            }
+        }
+
+        [TestMethod]
+        public void ValidarPasswordConTodasSusReglas_DebeRetornarFalsoPorFaltaDeCaracterEspecial()
+        {
+
+            var password = "aaaaaabbbAA111";
+            var validador = new ValidadorDePassword.ValidadorDePassword();
+            var result = validador.ValidarPasswordConTodasSusReglas(password);
+            Assert.IsFalse(result.Valida);
+
+            // Verificar que cada regla también sea valida
+
+            foreach (var regla in result.Reglas)
+            {
+                if (regla.Regla == "La contraseña debe contener al menos un caracter especial")
+                {
+                    Assert.IsFalse(regla.Valida);
+                }
+                else
+                {
+                    Assert.IsTrue(regla.Valida);
+                }
+
+            }
+        }
+
+
+        // Exito: pasa todas las reglas
+        // Fracasos: por cada de uno de los motivos -> 
     }
-}
+}   
+

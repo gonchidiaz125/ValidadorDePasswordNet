@@ -8,17 +8,38 @@ namespace ValidadorDePassword
 {
     public class ValidadorDePassword
     {
-        public bool ValidarLargoMinimo(string password) 
+
+        public class ResultadoDeRegla
         {
-            var largoMinimo = 3;
-            if (password.Length >= largoMinimo)
+            public string Regla { get; set; }
+            public bool Valida { get; set; }
+        }
+
+        public class ResultadoValidacion
+        {
+            public bool Valida { get; set; }
+
+            public List<ResultadoDeRegla> Reglas { get; set; }
+
+            public ResultadoValidacion()
             {
-                return true;
-            }else
-            {
-                return false;
+                Reglas = new List<ResultadoDeRegla>();
             }
         }
+
+        public bool ValidarLargoMinimo(string password)
+            {
+            var largoMinimo = 5;
+            if (password.Length >= largoMinimo)
+            {
+            return true;
+            }
+            else
+            {
+            return false;
+            }
+        }
+        
         
         public bool ValidarLargoMaximo(string password)
         {
@@ -78,6 +99,44 @@ namespace ValidadorDePassword
                 }
             }
             return false;
+        }
+
+        public ResultadoValidacion ValidarPasswordConTodasSusReglas(string password)
+        {
+            var resLargoMinimo = ValidarLargoMinimo(password);
+            var resLargoMaximo = ValidarLargoMaximo(password);
+            var resContieneNumero = ValidarDebeContenerAlgunNumero(password);
+            var resContieneMinuscula = ValidarDebeContenerAlgunaMinuscula(password);
+            var resContieneMayuscula = ValidarDebeContenerAlgunaMayuscula(password);
+            var resContieneCaracterEspecial = ValidarDebeContenerAlgunCaracterEspecial(password);
+
+            bool resultadoFinal;
+            if(resLargoMinimo && resLargoMaximo && resContieneNumero && resContieneMinuscula && resContieneMayuscula && resContieneCaracterEspecial )
+            {
+                resultadoFinal = true;
+            }else
+            {
+                resultadoFinal=false;
+            }
+
+            var resultadoDeValidacion = new ResultadoValidacion();
+            resultadoDeValidacion.Valida = resultadoFinal;
+
+            var reglaLargoMinimo = new ResultadoDeRegla() { Regla = "El largo de la contraseña debe ser al menos de 5 caracteres", Valida = resLargoMinimo };
+            resultadoDeValidacion.Reglas.Add(reglaLargoMinimo);
+            var reglaLargoMaximo = new ResultadoDeRegla() { Regla = "El largo de la contraseña debe contener menos de 20 caracteres", Valida = resLargoMaximo };
+            resultadoDeValidacion.Reglas.Add(reglaLargoMaximo);
+            var reglaContieneNumero = new ResultadoDeRegla() { Regla = "La contraseña debe contener al menos un caracter numerico", Valida = resContieneNumero };
+            resultadoDeValidacion.Reglas.Add(reglaContieneNumero);
+            var reglaContieneMinuscula = new ResultadoDeRegla() { Regla = "La contraseña debe contener al menos un caracter letra en minuscula", Valida = resContieneMinuscula};
+            resultadoDeValidacion.Reglas.Add(reglaContieneMinuscula);
+            var reglaContieneMayuscula = new ResultadoDeRegla() { Regla = "La contraseña debe contener al menos un caracter letra en mayuscula", Valida = resContieneMayuscula };
+            resultadoDeValidacion.Reglas.Add(reglaContieneMayuscula);
+            var reglaContieneCaracterEspecial = new ResultadoDeRegla() { Regla = "La contraseña debe contener al menos un caracter especial", Valida = resContieneCaracterEspecial };
+            resultadoDeValidacion.Reglas.Add(reglaContieneCaracterEspecial);
+
+            return resultadoDeValidacion;
+
         }
 
 

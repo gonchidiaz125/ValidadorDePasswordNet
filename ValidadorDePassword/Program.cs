@@ -74,3 +74,31 @@ resultado = validador.ValidarDebeContenerAlgunCaracterEspecial(password);
 Console.WriteLine($"Validar que contenga algun caracter especial <{password}>: {resultado}");
 
 Console.WriteLine();
+Console.WriteLine();
+Console.WriteLine();
+Console.WriteLine("VALIDAMOS TODAS LAS REGLAS JUNTAS");
+Console.WriteLine();
+
+password = "Abc1!";
+
+var listaDePassword = new List<string>();
+listaDePassword.Add("ab");
+listaDePassword.Add("01234567890123456789000");
+listaDePassword.Add("abcde");
+listaDePassword.Add("ABCDE");
+listaDePassword.Add("abcDEF");
+listaDePassword.Add("abcDEF123");
+listaDePassword.Add("abcDEF123!!!");
+
+foreach (var p in listaDePassword)
+{
+    password = p;
+    var res = validador.ValidarPasswordConTodasSusReglas(password);
+    Console.WriteLine($"Validacion General <{password}>: {res.Valida}");
+
+    foreach (var c in res.Reglas)
+    {
+        Console.WriteLine($"{c.Valida} - Regla {c.Regla}");
+    }
+    Console.WriteLine("");
+}
