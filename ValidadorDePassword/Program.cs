@@ -50,3 +50,15 @@ resultado = validador.ValidarDebeContenerAlgunaMinuscula(password);
 Console.WriteLine($"Validar que contenga alguna minuscula <{password}>: {resultado}");
 
 Console.WriteLine();
+
+password = "ABCD";
+resultado = validador.ValidarDebeContenerAlgunaMayuscula(password);
+Console.WriteLine($"Validar que contenga alguna mayuscula <{password}>: {resultado}");
+
+Console.WriteLine();
+
+password = "abcd";
+resultado = validador.ValidarDebeContenerAlgunaMayuscula(password);
+Console.WriteLine($"Validar que contenga alguna mayuscula <{password}>: {resultado}");
+
+Console.WriteLine();

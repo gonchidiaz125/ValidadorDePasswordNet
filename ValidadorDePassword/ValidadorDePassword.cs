@@ -57,6 +57,17 @@ namespace ValidadorDePassword
             return false;
         }
 
+        public bool ValidarDebeContenerAlgunaMayuscula(string password)
+        {
+            foreach(var c in password)
+            { if (char.IsUpper(c))
+                { 
+                    return true; 
+                }
+            }
+            return false;
+        }
+
     }
 
 
