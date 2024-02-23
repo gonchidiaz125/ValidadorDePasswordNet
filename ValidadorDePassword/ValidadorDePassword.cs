@@ -13,6 +13,8 @@ namespace ValidadorDePassword
         {
             public string Regla { get; set; }
             public bool Valida { get; set; }
+
+            public int NumeroRegla { get; set; }
         }
 
         public class ResultadoValidacion
@@ -122,17 +124,17 @@ namespace ValidadorDePassword
             var resultadoDeValidacion = new ResultadoValidacion();
             resultadoDeValidacion.Valida = resultadoFinal;
 
-            var reglaLargoMinimo = new ResultadoDeRegla() { Regla = "El largo de la contraseña debe ser al menos de 5 caracteres", Valida = resLargoMinimo };
+            var reglaLargoMinimo = new ResultadoDeRegla() { Regla = "El largo de la contraseña debe ser al menos de 5 caracteres", Valida = resLargoMinimo, NumeroRegla = 0};
             resultadoDeValidacion.Reglas.Add(reglaLargoMinimo);
-            var reglaLargoMaximo = new ResultadoDeRegla() { Regla = "El largo de la contraseña debe contener menos de 20 caracteres", Valida = resLargoMaximo };
+            var reglaLargoMaximo = new ResultadoDeRegla() { Regla = "El largo de la contraseña debe contener menos de 20 caracteres", Valida = resLargoMaximo, NumeroRegla = 1 };
             resultadoDeValidacion.Reglas.Add(reglaLargoMaximo);
-            var reglaContieneNumero = new ResultadoDeRegla() { Regla = "La contraseña debe contener al menos un caracter numerico", Valida = resContieneNumero };
+            var reglaContieneNumero = new ResultadoDeRegla() { Regla = "La contraseña debe contener al menos un caracter numerico", Valida = resContieneNumero, NumeroRegla = 2 };
             resultadoDeValidacion.Reglas.Add(reglaContieneNumero);
-            var reglaContieneMinuscula = new ResultadoDeRegla() { Regla = "La contraseña debe contener al menos un caracter letra en minuscula", Valida = resContieneMinuscula};
+            var reglaContieneMinuscula = new ResultadoDeRegla() { Regla = "La contraseña debe contener al menos un caracter letra en minuscula", Valida = resContieneMinuscula, NumeroRegla = 3 };
             resultadoDeValidacion.Reglas.Add(reglaContieneMinuscula);
-            var reglaContieneMayuscula = new ResultadoDeRegla() { Regla = "La contraseña debe contener al menos un caracter letra en mayuscula", Valida = resContieneMayuscula };
+            var reglaContieneMayuscula = new ResultadoDeRegla() { Regla = "La contraseña debe contener al menos un caracter letra en mayuscula", Valida = resContieneMayuscula, NumeroRegla = 4 };
             resultadoDeValidacion.Reglas.Add(reglaContieneMayuscula);
-            var reglaContieneCaracterEspecial = new ResultadoDeRegla() { Regla = "La contraseña debe contener al menos un caracter especial", Valida = resContieneCaracterEspecial };
+            var reglaContieneCaracterEspecial = new ResultadoDeRegla() { Regla = "La contraseña debe contener al menos un caracter especial", Valida = resContieneCaracterEspecial, NumeroRegla = 5 };
             resultadoDeValidacion.Reglas.Add(reglaContieneCaracterEspecial);
 
             return resultadoDeValidacion;
